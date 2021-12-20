@@ -19,7 +19,7 @@
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
 		<maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
-		<disable.checks>false</disable.checks>
+		<disable.checks>true</disable.checks>
 		<maven-checkstyle-plugin.failsOnError>true</maven-checkstyle-plugin.failsOnError>
 		<maven-checkstyle-plugin.failOnViolation>true</maven-checkstyle-plugin.failOnViolation>
 		<maven-checkstyle-plugin.includeTestSourceDirectory>true</maven-checkstyle-plugin.includeTestSourceDirectory>
@@ -37,7 +37,28 @@
 		<nohttp-checkstyle.version>0.0.2.RELEASE</nohttp-checkstyle.version>
 		<disable.nohttp.checks>true</disable.nohttp.checks>
 		<spring-javaformat-checkstyle.version>0.0.7</spring-javaformat-checkstyle.version>
+
+		<!-- datav -->
+		<skipTests>true</skipTests>
+		<maven.javadoc.skip>true</maven.javadoc.skip>
+		<checkstyle.skip>true</checkstyle.skip>
+		<docker.prefix>docker.datav.com/datav</docker.prefix>
+		<project.repository.host>http://121.36.152.60:8081</project.repository.host>
 	</properties>
+
+	<!--  私服Nexus -->
+	<distributionManagement>
+		<repository>
+			<id>datav-releases</id>
+			<name>Nexus Release Repository</name>
+			<url>${project.repository.host}/repository/maven-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>datav-snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>${project.repository.host}/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
   	<modules>
 		<module>spring-cloud-dataflow-apps-generator-plugin</module>
@@ -198,48 +219,6 @@
 			</plugin>
 		</plugins>
 	</build>
-	<distributionManagement>
-		<repository>
-			<id>repo.spring.io</id>
-			<name>Spring Release Repository</name>
-			<url>https://repo.spring.io/release</url>
-		</repository>
-		<snapshotRepository>
-			<id>repo.spring.io</id>
-			<name>Spring Snapshot Repository</name>
-			<url>https://repo.spring.io/snapshot</url>
-		</snapshotRepository>
-	</distributionManagement>
-	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-		</repository>
-		<repository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-		</pluginRepository>
-		<pluginRepository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
 
 
 	<profiles>
